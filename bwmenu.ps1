@@ -7,7 +7,7 @@ if ($session -eq $null) {
   Exit
 }
 
-$items = (bw list items --session $session | ConvertFrom-Json).where({ $_.organizationId -eq $null })
+$items = bw list items --session $session | ConvertFrom-Json
 $name = $items | Select -expand name | .\wlines.exe
 $item = $items.where({ $_.name -eq $name })[0]
 
